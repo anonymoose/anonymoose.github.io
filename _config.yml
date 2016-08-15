@@ -2,8 +2,8 @@
 
 title:            Palm Valley Data Lab
 locale:           en_US
-#url:              https://anonymoose.github.io
-url:              http://localhost:4000
+url:              https://anonymoose.github.io
+#url:              http://localhost:4000
 
 name: Palm Valley Data Lab
 description: Big Data.  Computational Finance.  Jeep Restoration.  Barbecue.
