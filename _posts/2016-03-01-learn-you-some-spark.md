@@ -1,18 +1,18 @@
 ---
 layout: post
-title: "Learn You Some Spark
+title: "Learn You Some Spark"
 description: "Get started running spark, even if you are impatient."
 date: 2016-03-01 12:00:00 -0400
 category: spark
 tags: [spark, python]
 ---
 
-Let’s say you have an aging data aggregation system that is straining under the weight of your data processing. Your system 
+Let's say you have an aging data aggregation system that is straining under the weight of your data processing. Your system 
 takes a bunch of event data in JSON, munges it up in a bunch of Perl and shoves it into SQLServer for further munging and 
 delivery to the user. You know your processing needs are going to grow significantly in the coming months. Time to consider 
 a new platform for processing this data.
 <br/>
-![center](/images/2016-04-28-aws-lambda-for-the-lazy/rube.jpg)
+![center](/images/2016-03-01-learn-you-some-spark/rube.jpg)
 <br/>
 Enter Spark. Spark is trying to make Hadoop-style data processing accessible and performant. It’s magic and provided it is
 applicable to your domain, it can solve lots of problems of scale.
@@ -321,3 +321,4 @@ Cons:
 - Conceptually difficult. If you’ve not wrapped your head around functional programming, the concepts will be a challenge. You should do it anyway. Makes you a better pro.
 - Overkill for small stuff and most stuff is small stuff. If you don’t have a TB of data or more, you should not go down this path. Life is too short.
 - Esoteric skill set. This is currently difficult to hire for. This will improve but if you making hiring decisions, be prepared for a higher bill rate for now. On the other hand, if you’re a developer…
+
