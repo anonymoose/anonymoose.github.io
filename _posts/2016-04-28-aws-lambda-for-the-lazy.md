@@ -2,7 +2,7 @@
 layout: post
 title: "AWS Lambda for the Lazy"
 description: "Using AWS Lambda to create a secure file drop."
-date: 2016-08-09 12:00:00 -0400
+date: 2016-04-28 12:00:00 -0400
 category: aws
 tags: [aws, lambda, python]
 ---
