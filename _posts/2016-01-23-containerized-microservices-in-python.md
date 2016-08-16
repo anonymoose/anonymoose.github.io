@@ -277,7 +277,7 @@ fibonacci.conf is an Nginx configuration file that knows how to talk to the Pyth
 
 
 <br/><br/>
-{% highlight json %}
+{% highlight nginx %}
 server {
     listen 80;
     server_name fibonacci_api;
