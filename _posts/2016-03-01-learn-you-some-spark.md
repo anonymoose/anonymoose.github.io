@@ -33,17 +33,17 @@ Let’s start.
 - Install Vagrant. Again, take the defaults.
 - Create a project directory to hold your code and a subdirectory to hold your data. Let’s call it “rube”. Open up a file called “Vagrantfile”
 
-```{shell}
+{% highlight bash %}
 > cd
 > mkdir -p rube/data
 > vi Vagrantfile
-```
+{% endhighlight %}
 <br/><br/>
 
 Insert the following code into Vagrantfile.
 
 <br/><br/>
-```ruby
+{% highlight ruby %}
     Vagrant.configure(2) do |config|
       config.vm.box = "ubuntu/trusty64"
       config.vm.provision :shell, inline: "sudo apt-get -y update"
@@ -57,7 +57,7 @@ Insert the following code into Vagrantfile.
         vb.memory = "8192"
       end
     end
-```
+{% endhighlight %}
 <br/><br/>
 
 What does all this do? I tells vagrant when you fire it up here in a bit to install a Ubuntu Trusty64 Linux instance on VirtualBox, 
@@ -68,27 +68,27 @@ Continuing on…
 <br/><br/>
 In your shell, fire up vagrant.
 <br/><br/>
-```{shell}
+{% highlight bash %}
 > vagrant up
-```
+{% endhighlight %}
 <br/><br/>
 Lots of output goes spinning by. This might take 20 minutes or more the first time. Go get a sandwich and ponder how amazing 
 this is.
 <br/><br/>
 Once that completes, you’re ready to go. Use ‘vagrant ssh’ to get on to your instance.
 <br/><br/>
-```shell
+{% highlight shell %}
 > vagrant ssh
-```
+{% endhighlight %}
 <br/><br/>
 More output and a prompt. You’re in. Fire up pyspark and play around.
 <br/><br/>
-```shell
+{% highlight shell %}
 ~ whoami
 vagrant
 ~ cd spark*
 ~ bin/pyspark
-```
+{% endhighlight %}
 
 ## Running Spark Code
 Now that you have Spark running on a Linux box running on a Windows box, you need to process your data. Pyspark is an excellent 
@@ -104,7 +104,7 @@ The gist of the code is as follows:
 <br/><br/>
 Here’s the code:
 <br/><br/>
-```python
+{% highlight python %}
     # export STDT=20150801
     # export ENDDT=20150831
     # rm -rf /data/results/$ENDDT*
@@ -265,13 +265,13 @@ Here’s the code:
         generate_report(sc, args.start, args.end)
     
         sc.stop()
-```
+{% endhighlight %}
 <br/><br/>
 Ahhh!!!! Thats a lot of code. Relax. Most of it is boilerplate and comments.
 <br/><br/>
 This is the part that matters:
 <br/><br/>
-```python
+{% highlight python %}
     # run the list of files into one RDD
         lines = sc.textFile(",".join(files))
     
@@ -292,7 +292,7 @@ This is the part that matters:
                       .reduceByKey(combine_events)\
                       .values()\
                       .collect()
-```
+{% endhighlight %}
 <br/><br/>
 All this does is twist a bunch of JSON around into a flattened model that I can dump to CSV. Each step spins up parallel 
 tasks, ostensibly on a cluster if you were in production, to process the intermediate parts of your data. This takes the 
@@ -300,11 +300,12 @@ place of a bunch of loop and intermediate file handling logic that would clutter
 <br/><br/>
 ## Run It
 From your vagrant instance:
-```shell
+<br/><br/>
+{% highlight shell %}
 ~ ./bin/spark-submit \
            --master local[4] \ 
            /data/report1.py 20160303 20160331
-```
+{% endhighlight %}
 <br/><br/>
 When it’s done, go pick up your CSV file to send wherever. For my needs it processed hundreds of MB of JSON file down to a 
 CSV file in about 3 minutes on my laptop. When it’s an order of magnitude bigger, it won’t be on my laptop anymore, but the 

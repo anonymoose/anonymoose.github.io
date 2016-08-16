@@ -59,7 +59,7 @@ Lambda function to talk to S3, which is the whole point.
 Each of these policies are simple JSON snippets. To give Lambda access to the private box, add a Role Policy like so. 
 Make sure your resource names match.
 
-```json
+{% highlight json %}
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -85,13 +85,13 @@ Make sure your resource names match.
         }
     ]
 }
-```
+{% endhighlight %}
 <br/>
 To give Lambda access to the public S3 dropbox, add a Role Policy to “lambda_dropbox_move” like so:
 <br/>
 
 
-```json
+{% highlight json %}
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -117,7 +117,7 @@ To give Lambda access to the public S3 dropbox, add a Role Policy to “lambda_d
         }
     ]
 }
-```
+{% endhighlight %}
 
 <br/>
 Easy.
@@ -139,7 +139,7 @@ Select the role you already created ‘lambda_dropbox_move’.
 Paste in some python to do the work. Make sure the bucket names match your reality.
 
 
-``` {python}
+{% highlight python %}
 from __future__ import print_function
 
 import json
@@ -166,7 +166,7 @@ def lambda_handler(event, context):
         print(e)
         raise e
 
-```
+{% endhighlight %}
 
 <br/><br/>
 
@@ -181,27 +181,27 @@ Money.
 ## Test it Out
 S3 put a file using the AWS CLI. Make sure you use your public bucket name.
 
-```bash
+{% highlight bash %}
 aws s3 cp test.txt s3://dropbox-public/some/nested/path/test.txt
-```
+{% endhighlight %}
 <br/>
 
 The move should happen almost instantly. Check your private bucket to ensure the file is there.
 
 <br/>
-```bash
+{% highlight bash %}
 aws s3 ls --recursive s3://dropbox-private
-```
+{% endhighlight %}
 <br/>
 
 Output:
 
 <br/>
-```bash
+{% highlight bash %}
 2016-07-02 21:32:57   2.9 MiB some/nested/path/test.txt
 Total Objects: 1
    Total Size: 2.9 MiB
-```
+{% endhighlight %}
 <br/>
 
 Now see if there is anything in your old bucket. There’s not.
