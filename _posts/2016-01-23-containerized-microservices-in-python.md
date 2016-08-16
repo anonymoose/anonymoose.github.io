@@ -50,7 +50,7 @@ assume you are well versed in that. Use virtualenv to create a local, disposable
 prerequisite libraries to your virtual environment.
 
 <br/><br/>
-```shell
+{% highlight bash %}
 $ cd $DEV_HOME       # your top level 'fibonacci' directory.
                      # creates "./python" dir
 $ virtualenv --no-site-packages python   
@@ -58,7 +58,7 @@ $ virtualenv --no-site-packages python
 $ source python/bin/activate
                      # install your dependencies.
 $ pip install Flask gunicorn Sphinx coverage nose
-```
+{% endhighlight %}
 
 <br/><br/>
 ## Some Code
@@ -66,7 +66,7 @@ There are lots of articles out there on creating a simple Flask application, but
 serves up Fibonacci results. Let’s call this “main.py”
 
 <br/><br/>
-```python
+{% highlight python %}
     from common import notify_error, log_api_call
     from fibonacci import fibonacci_calc
     from flask import Flask
@@ -115,7 +115,7 @@ serves up Fibonacci results. Let’s call this “main.py”
     if __name__ == '__main__':
         app.run()
 
-```
+{% endhighlight %}
 <br/><br/>
 This code takes a HTTP GET call, ensures the parameters are ok, then calculates the Fibonacci sequence requested in a 
 non-recursive manner. If you go to the full Github project, you’ll see a lot of additional stuff, mostly around error 
@@ -124,17 +124,17 @@ handling, docs, etc, which I have redacted here for simplicity. Easy stuff.
 <br/><br/>
 Fire it up so you can debug it:
 <br/><br/>
-```shell
+{% highlight bash %}
 $ cd $DEV_HOME/fibonacci_api
 $ python main.py
-```
+{% endhighlight %}
 
 <br/><br/>
 In another shell, use Curl to hit it.
 
 
 <br/><br/>
-```shell
+{% highlight bash %}
 $ curl http://localhost:5000/fibonacci/list?count=10
 {
   "answer": [
@@ -150,7 +150,7 @@ $ curl http://localhost:5000/fibonacci/list?count=10
     34
   ]
 }
-```
+{% endhighlight %}
 
 <br/><br/>
 Money.
@@ -168,7 +168,7 @@ the business logic layer and the Flask layer. Again, this is shortened from my f
 more modular.
 
 <br/><br/>
-```python
+{% highlight python %}
     from nose.tools import ok_, eq_
     from flask import json
     import main
@@ -212,13 +212,13 @@ more modular.
         check_fibonacci_api_output_ok(test_app, [0,1,1,2,3,5])
     
 
-```
+{% endhighlight %}
 
 <br/><br/>
 When I run the full version on the Github, using Nose’s code coverage facilities, I get this output:
 
 <br/><br/>
-```shell
+{% highlight bash %}
 
 $ nosetests --with-coverage --cover-html \
        --cover-package=fibonacci_api --cover-erase
@@ -235,7 +235,7 @@ TOTAL                           60      6    90%
 ----------------------------------------------------------
 Ran 5 tests in 0.027s
 
-```
+{% endhighlight %}
 
 <br/><br/>
 90% coverage is not bad, given that on a project of this size, the amount of boilerplate is a higher percentage of the 
@@ -264,12 +264,12 @@ Nginx is a lightweight web server that is a great Swiss Army knife of the infras
 To tell Docker to include it in our container, we need to configure it. First we tell Docker that we want Nginx installed and to use our config file. This is done through a file called Dockerfile in $DEV_HOME/Dockerfile.
 
 <br/><br/>
-```shell
+{% highlight bash %}
 FROM tutum/nginx                            # install nginx
 RUN rm /etc/nginx/sites-enabled/default     # cleanup last run
 ADD fibonacci.conf /etc/nginx/sites-enabled # use my file.
 
-```
+{% endhighlight %}
 
 
 <br/><br/>
@@ -277,7 +277,7 @@ fibonacci.conf is an Nginx configuration file that knows how to talk to the Pyth
 
 
 <br/><br/>
-```json
+{% highlight json %}
 server {
     listen 80;
     server_name fibonacci_api;
@@ -290,7 +290,7 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }
-```
+{% endhighlight %}
 
 
 <br/><br/>
@@ -303,9 +303,9 @@ Python is notoriously single threaded. The preferred mechanism to accomplish par
 <br/><br/>
 Once again, we need to create a Dockerfile. Docker folks were nice to us and made this common pattern a one-liner. Here is the full content of our Dockerfile at $DEV_HOME/fibonacci_api/Dockerfile
 
-```shell
+{% highlight bash %}
 FROM python:2.7.11-onbuild
-```
+{% endhighlight %}
 
 This calls a reusable module provided by Docker to do the following:
 - Install python 2.7
@@ -316,13 +316,13 @@ This calls a reusable module provided by Docker to do the following:
 Note that we’ve not discussed requirements.txt. This is created by telling pip, your python package manager, to enumerate all the libraries and versions in your environment.
 
 <br/><br/>
-```shell
+{% highlight bash %}
 $ pip freeze > requirements.txt
 $ head -3 requirements.txt
 alabaster==0.7.7
 Babel==2.2.0
 coverage==4.0.3
-```
+{% endhighlight %}
 
 <br/><br/>
 If you installed as directed above, Flask, Gunicorn and the kitchen sink will be in this file.
@@ -336,7 +336,7 @@ In $DEV_HOME (your top level), create a file called docker-compose.yml. This fil
 
 <br/><br/>
 
-```yaml
+{% highlight yaml %}
 
 fibonacci_api:
   restart: always
@@ -361,7 +361,7 @@ proxy:
     - fibonacci_api
   links:
     - fibonacci_api:fibonacci_api
-```
+{% endhighlight %}
 
 <br/><br/>
 This file, in English says, roughly: “The fibonacci_api component lives in $DEV_HOME/fibonacci_api, runs on port 8080, and you run it with /usr/local/bin/gnunicorn. Additionally, the proxy component lives in $DEV_HOME/proxy runs on port 80, and links to fibonacci_api to allow all the names to align”.
