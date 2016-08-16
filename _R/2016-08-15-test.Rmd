@@ -1,11 +1,14 @@
 ---
 layout: post
-title: "Trump "
+title: "Advertisements"
 description: "Simple test."
 date: 2016-08-15 12:00:00 -0400
 category: r
 tags: [r, statistics]
 ---
+
+
+
 
 ```{r setup, include = FALSE, cache = FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, cache = TRUE,

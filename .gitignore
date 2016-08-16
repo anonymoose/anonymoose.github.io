@@ -19,6 +19,7 @@ _R/drafts
 figs/drafts
 
 *cache
+.#*
 _R/*files
 _R/*.html
 
