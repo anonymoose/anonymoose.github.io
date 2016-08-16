@@ -1,0 +1,9 @@
+base
+knitr
+ggplot2
+dplyr
+purrr
+twitteR
+tidyr
+lubridate
+scales

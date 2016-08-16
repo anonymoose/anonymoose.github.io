@@ -298,7 +298,9 @@ All this does is twist a bunch of JSON around into a flattened model that I can 
 tasks, ostensibly on a cluster if you were in production, to process the intermediate parts of your data. This takes the 
 place of a bunch of loop and intermediate file handling logic that would clutter up your code.
 <br/><br/>
+
 ## Run It
+
 From your vagrant instance:
 <br/><br/>
 {% highlight shell %}
@@ -311,7 +313,9 @@ When it’s done, go pick up your CSV file to send wherever. For my needs it pro
 CSV file in about 3 minutes on my laptop. When it’s an order of magnitude bigger, it won’t be on my laptop anymore, but the 
 code will still work identically. Write once and run at any scale.
 <br/><br/>
+
 ## The Net of It
+
 Pros:
 
 - Scalable. If you have a true big data problem, this is a great tool. If you don’t, just stuff it in Postgres.
