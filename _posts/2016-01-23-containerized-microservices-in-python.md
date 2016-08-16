@@ -2,7 +2,7 @@
 layout: post
 title: "Containerized Microservices in Python"
 description: "Create small services using Python, Docker and other cool stuff."
-date: 2016-03-01 12:00:00 -0400
+date: 2016-01-23 12:00:00 -0400
 category: python
 tags: [python, docker]
 ---
