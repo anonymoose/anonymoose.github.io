@@ -6,8 +6,7 @@ comments: false
 ---
 
 Software Engineer and BBQ Connoisseur.  
-
-
+<br/><br/>
 My professional interests include large scale software systems, data analysis, and programming, preferably  in Scala, Python, and R.
 
 
