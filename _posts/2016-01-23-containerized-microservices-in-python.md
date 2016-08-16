@@ -371,4 +371,6 @@ Detailed instructions on what commands to run to get this going are here. This i
 
 <br/><br/>
 ## Wrapping Up
-Micro services and containers are interesting technologies for combating complexity in huge environments. In my opinion, you should start with that monolith and only do all this if you need it. Just in case, you should keep this in your pocket for when your hack-a-thon project turns into that huge environment.
+Micro services and containers are interesting technologies for combating complexity in huge environments. In my opinion, you 
+should start with that monolith and only do all this if you need it. Just in case, you should keep this in your pocket for 
+when your hack-a-thon project turns into that huge environment.
